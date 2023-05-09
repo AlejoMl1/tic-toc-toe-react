@@ -1,0 +1,86 @@
+.app{
+    margin:0;
+    padding:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: rgb(3, 27, 5);
+    color: azure;
+}
+
+.gameBoard{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+  
+}
+.square{
+    width: 100px;
+    height: 100px;
+    border: solid 2px rgb(250, 245, 245);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .x-shape {
+    width: 80%;
+    height: 80%;
+    position: relative;
+    
+  }
+  
+  .x-shape::before,
+  .x-shape::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 100%;
+    height: 4px;
+    background-color: green;
+    transform-origin: center;
+  }
+  
+  .x-shape::before {
+    transform: rotate(45deg);
+    background-color: red;
+    box-shadow: 0 0 5px 5px rgba(255, 0, 0, 0.7);
+  }
+  
+  .x-shape::after {
+    transform: rotate(-45deg);
+    background-color: red;
+    box-shadow: 0 0 5px 5px rgba(255, 0, 0, 0.7);
+  }
+  .circle{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 2px solid;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px 3px rgb(246, 246, 248);
+  }
+
+  .winning-line {
+    content: "";
+    
+    position: absolute;
+    /* top: 0; */
+    /* left: 0;  */
+    transform-origin: top left;
+    transform: rotate(-45deg)  translateX(-70.7%) translateY(5%);
+    height: 100%;
+    background-color: rgb(0, 183, 255);
+    width: 4px;
+    height: 380px;
+    /* margin-left: 145px; */
+    border-radius: 8px;
+    box-shadow: 0 0 5px 5px rgba(128, 165, 233, 0.7);
+    /* transform: translate(45%,50%); */
+    /* transform-origin: center; */
+  }
