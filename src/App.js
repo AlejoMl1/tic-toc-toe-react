@@ -7,8 +7,9 @@ function App() {
     const [turn,setTurn] = useState("player 1");
     const message = `It is ${turn} turn`;
     const [winningMessage, setWinningMessage] = useState(null)
-    console.log(cells)
+    // console.log(cells)
     const [winningLinePosition, setWinningLinePosition] = useState(null);
+    const [resetGame,setResetGame]= useState(false)
 
     const setWinningLine = (winningPosition)=>{
       const sum = winningPosition.reduce((accumulator, curr) => accumulator + curr, 0);
@@ -16,7 +17,14 @@ function App() {
       const yPos = 50; // Position the line vertically in the middle of the row
       setWinningLinePosition({ x: xPos, y: yPos });
     }
+    const handleNewGame = ()=>{
+    setCells(["","","","","","","","",""]);
+    setTurn("player 1");
+    setWinningLinePosition(null);
+    setWinningMessage(null);
+    setResetGame(true);
 
+    }
     const checkScore =()=>{
         const winningCombos= [
           [0,1,2],[3,4,5],[6,7,8],[0,4,8],[0,3,6],[1,4,7],[2,5,8]
@@ -27,6 +35,7 @@ function App() {
         winningCombos.forEach(array => {
           const circleWins = array.every(cellIndex => cells[cellIndex]==="circle");
           if (circleWins){
+            console.log("circle wins")
             setWinningMessage("Circle Wins!")
             foundWinner = true;
             setWinningLine(array)
@@ -34,6 +43,7 @@ function App() {
           }
           const crossWins = array.every(cellIndex => cells[cellIndex]==="cross");
           if (crossWins){
+            console.log("cross wins")
             setWinningMessage("Cross Wins!")
             foundWinner = true;
             setWinningLine(array)
@@ -43,10 +53,24 @@ function App() {
         });
         return foundWinner;
     }
-
+    const renderCells = ()=>{
+      return cells.map((cell,index)=><Cell 
+          key={index} 
+          id={index} 
+          cells={cells} 
+          turn={turn}
+          setCells= {setCells}
+          setTurn = {setTurn}
+          winningMessage= {winningMessage}
+          />)
+    }
     useEffect(()=>{
       const check =checkScore();
-      console.log(check)
+      console.log("checkScore",check);
+      if(!winningMessage && resetGame){
+        setResetGame(false);
+      }
+
     },[cells])
   return (
     <div className="app">
@@ -54,14 +78,8 @@ function App() {
       <p>{message}</p>
       <div className="gameBoard">
         {
-          cells.map((cell,index)=><Cell 
-          key={index} 
-          id={index} 
-          cells={cells} 
-          turn={turn}
-          setCells= {setCells}
-          setTurn = {setTurn}
-          />)
+          !resetGame? renderCells():""
+
         }
         {winningLinePosition && (
       <div
@@ -71,7 +89,7 @@ function App() {
     )}
       </div>
       <p>{winningMessage ? winningMessage:""}</p>
-  
+      <button onClick={handleNewGame}></button>
     </div>
   );
 }
