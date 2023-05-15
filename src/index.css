@@ -6,7 +6,7 @@
     align-items: center;
     height: 100vh;
     flex-direction: column;
-    background-color: rgb(3, 27, 5);
+    background-color: rgb(1, 20, 2);
     color: azure;
 }
 
@@ -20,13 +20,41 @@
 .square{
     width: 100px;
     height: 100px;
-    border: solid 2px rgb(250, 245, 245);
+    border: solid 2px rgb(70, 35, 151);
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* box-shadow: 0 0 5px 3px rgb(246, 246, 248); */
+}
+.square:first-child,
+.square:nth-child(2),
+.square:nth-child(3)
+{
+  border-top: none;
 }
 
+.square:first-child,
+.square:nth-child(4),
+.square:nth-child(7)
+{
+  border-left: none;
+}
+
+
+.square:nth-child(7),
+.square:nth-child(8),
+.square:nth-child(9)
+{
+  border-bottom: none;
+}
+
+.square:nth-child(3),
+.square:nth-child(6),
+.square:nth-child(9)
+{
+  border-right: none;
+}
   .x-shape {
     width: 80%;
     height: 80%;
@@ -49,13 +77,13 @@
   .x-shape::before {
     transform: rotate(45deg);
     background-color: red;
-    box-shadow: 0 0 5px 5px rgba(255, 0, 0, 0.7);
+    box-shadow:  0 0 5px 5px rgba(231, 139, 139, 0.7);
   }
   
   .x-shape::after {
     transform: rotate(-45deg);
     background-color: red;
-    box-shadow: 0 0 5px 5px rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 3px 3px rgba(231, 139, 139, 0.7);
   }
   .circle{
     height: 70px;
@@ -63,24 +91,16 @@
     border-radius: 50%;
     border: 2px solid;
     box-sizing: border-box;
-    box-shadow: 0 0 5px 3px rgb(246, 246, 248);
+    box-shadow: 0 0 3px 3px rgb(246, 246, 248);
   }
 
   .winning-line {
-    content: "";
-    
     position: absolute;
-    /* top: 0; */
-    /* left: 0;  */
-    transform-origin: top left;
-    transform: rotate(-45deg)  translateX(-70.7%) translateY(5%);
-    height: 100%;
     background-color: rgb(0, 183, 255);
     width: 4px;
-    height: 380px;
-    /* margin-left: 145px; */
     border-radius: 8px;
-    box-shadow: 0 0 5px 5px rgba(128, 165, 233, 0.7);
-    /* transform: translate(45%,50%); */
-    /* transform-origin: center; */
+    box-shadow: 0 0 2px 2px rgba(128, 165, 233, 0.7);
+    transform:    translateY(5%);
+    height: 270px;
+    margin-left: 150px;
   }
