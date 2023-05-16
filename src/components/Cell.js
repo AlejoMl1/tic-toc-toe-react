@@ -1,16 +1,17 @@
 import { useState } from "react";
 const Cell = ({ id, cells, turn, setCells, setTurn,winningMessage }) => {
     const [turnShape, setTurnShape] = useState("");
+    console.log("winning message",winningMessage)
     const handleOnClick = (event) => {
         if (cells[id] == "") {
-            if (turn === "player 1") {
+            if (turn === "Circle") {
                 setTurnShape("circle")
-                setTurn("player 2")
+                setTurn("Cross")
                 handleChangeCellArray("circle")
               
-            } else if (turn === "player 2") {
+            } else if (turn === "Cross") {
                 setTurnShape("x-shape")
-                setTurn("player 1")
+                setTurn("Circle")
                 handleChangeCellArray("cross")
             }
         }
