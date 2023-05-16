@@ -2,8 +2,6 @@ import { useState } from "react";
 const Cell = ({ id, cells, turn, setCells, setTurn,winningMessage }) => {
     const [turnShape, setTurnShape] = useState("");
     const handleOnClick = (event) => {
-        // console.log(`Posicion ${id} tiene= ${cells[id]} ${turn}`)
-        console.log("winning message state",winningMessage)
         if (cells[id] == "") {
             if (turn === "player 1") {
                 setTurnShape("circle")
@@ -32,9 +30,11 @@ const Cell = ({ id, cells, turn, setCells, setTurn,winningMessage }) => {
 
    
     return (
-        <div className="square" id={id} onClick={ !winningMessage ? handleOnClick:undefined}>
-            <div className={turnShape}></div>
-       
+        <div className={`square${turnShape?` ${turnShape}Active`:""}`} id={id} onClick={ !winningMessage ? handleOnClick:undefined}>
+            {
+                turnShape? (  <div className={turnShape}></div>):undefined
+            }
+          
         </div>
     )
 }

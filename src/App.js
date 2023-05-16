@@ -17,60 +17,44 @@ function App() {
       const widthSquare = 100; //100 pixel
       let diagonalWinningLine = false;
       const distanceBetweenFirstAndSecond = winningPosition[1]-winningPosition[0]
-      let xPos, yPos
-      console.log("distance between",distanceBetweenFirstAndSecond)
-      if((winningPosition[0]===0 && winningPosition[1]===4) ||(winningPosition[0]===2 && winningPosition[1]===4) ){
-        diagonalWinningLine=true
+      console.table(winningPosition)
+      const isDiagonalFirstSquare = (winningPosition[0]===0 && winningPosition[1]===4)?true:false;
+      const isDiagonalThirdSquare = (winningPosition[0]===2 && winningPosition[1]===4)?true:false;
+      if(isDiagonalFirstSquare){
+        setWinningLinePosition({
+          width: "3px",
+          height:"385px",
+          transform: "rotate(-45deg)  translateX(-70.7%) translateY(5%)",
+          transformOrigin: "top left",
+        })
+      }else if(isDiagonalThirdSquare){
+        setWinningLinePosition({
+          width: "3px",
+          height:"385px",
+          transform: "rotate(45deg)   translateY(6%)",
+          transformOrigin: "top right",
+          marginLeft: "300px"
+        })
       }
-      if (row === 0 && winningPosition[1]===1 ) {
-        //     // Horizontal line
-            xPos = widthSquare *0.5;
-            yPos = (row + 0.5) * widthSquare;
+      if (row === 0 && winningPosition[1]===1 || row === 1 && winningPosition[1]===4 || row === 2 && winningPosition[1]===7) {
+        // Horizontal line
+        setWinningLinePosition({
+          width: "290px",
+          height:"3px",
+          marginTop: `${(widthSquare/2)+(row*100)}px`,
+          transform: "translateX(2%)",
+        })
       }else if(row === 0 && distanceBetweenFirstAndSecond===3){
-        console.log("enter vertical luine first row")
         //vertical line
-        const transform =  "transform:    translateY(5%);"; 
-        const height = "280px";
         const marginLeft = (widthSquare*0.5) + (winningPosition[0]*widthSquare);
         setWinningLinePosition({
           transform: "translateY(2%)",
           height: "290px",
+          width: "3px",
           marginLeft: `${marginLeft-2}px`
         })
       }
-      // if(winningPosition[0] <3){ //first row
-      //   xPos = ((winningPosition[0]+1) * widthSquare)/2  
-      // }else if (winningLinePosition[0] <6){
-      //   xPos = ((winningPosition[0]+1) * widthSquare)/2 
-      // }
-      
-      // setWinningLinePosition({ x: xPos, y: yPos });
-      // const widthSquare = 100; // 100 pixel
-      // let xPos, yPos;
     
-      // if (winningPosition.length > 0) {
-      //   const row = Math.floor(winningPosition[0] / 3); // Row index of the winning position
-      //   const col = winningPosition[0] % 3; // Column index of the winning position
-      //   if (row === 0) {
-      //     // Horizontal line
-      //     xPos = widthSquare / 2;
-      //     yPos = (row + 0.5) * widthSquare;
-      //   } else if (col === 0) {
-      //     // Vertical line
-      //     xPos = (col + 0.5) * widthSquare;
-      //     yPos = widthSquare / 2;
-      //   } else if (row === col) {
-      //     // Diagonal line from top-left to bottom-right
-      //     xPos = (col + 0.5) * widthSquare;
-      //     yPos = (row + 0.5) * widthSquare;
-      //   } else if (row + col === 2) {
-      //     // Diagonal line from top-right to bottom-left
-      //     xPos = (col + 1.5) * widthSquare;
-      //     yPos = (row + 0.5) * widthSquare;
-      //   }
-      // }
-    
-      // setWinningLinePosition({ x: xPos, y: yPos });
     }
     const handleNewGame = ()=>{
     setCells(["","","","","","","","",""]);
@@ -82,7 +66,7 @@ function App() {
     }
     const checkScore =()=>{
         const winningCombos= [
-          [0,1,2],[3,4,5],[6,7,8],[0,4,8],[0,3,6],[1,4,7],[2,5,8]
+          [0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6],[0,3,6],[1,4,7],[2,5,8]
         ]
  
         let foundWinner = false;
@@ -91,7 +75,7 @@ function App() {
           const circleWins = array.every(cellIndex => cells[cellIndex]==="circle");
           if (circleWins){
             console.log("circle wins")
-            setWinningMessage("Circle Wins!")
+            // setWinningMessage("Circle Wins!")
             foundWinner = true;
             setWinningLine(array)
             return;
@@ -99,7 +83,7 @@ function App() {
           const crossWins = array.every(cellIndex => cells[cellIndex]==="cross");
           if (crossWins){
             console.log("cross wins")
-            setWinningMessage("Cross Wins!")
+            // setWinningMessage("Cross Wins!")
             foundWinner = true;
             setWinningLine(array)
             return;
@@ -121,7 +105,7 @@ function App() {
     }
     useEffect(()=>{
       const check =checkScore();
-      console.log("checkScore",check);
+      // console.log("checkScore",check);
       if(!winningMessage && resetGame){
         setResetGame(false);
       }
