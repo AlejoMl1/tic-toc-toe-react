@@ -55,10 +55,11 @@ function App() {
     }
     const handleNewGame = ()=>{
     setCells(["","","","","","","","",""]);
-    if( turn=="Cross"){
-      setTurn("Circle");
-    }else{
+    //to switch the figure that starts
+    if( winningMessage=="Circle Wins!"){
       setTurn("Cross");
+    }else{
+      setTurn("Circle");
     }
     setWinningLinePosition(null);
     setWinningMessage(null);

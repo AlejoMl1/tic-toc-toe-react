@@ -31,9 +31,9 @@ const Cell = ({ id, cells, turn, setCells, setTurn,winningMessage }) => {
 
    
     return (
-        <div className={`square${turnShape?` ${turnShape}Active`:""}`} id={id} onClick={ !winningMessage ? handleOnClick:undefined}>
+        <div className={`square${turnShape? ` ${turnShape}Active`:` ${turn}Hover`}`} id={id} onClick={ !winningMessage ? handleOnClick:undefined}>
             {
-                turnShape? (  <div className={turnShape}></div>):undefined
+                <div className={turnShape?`${turnShape}`:``}></div>
             }
           
         </div>

@@ -29,12 +29,17 @@ body{
 .gameBoard{
     width: 300px;
     height: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;
+    /* display: flex;
+    flex-wrap: wrap; */
+    /* overflow: hidden; */
+    display: grid;
+    grid-template-columns: repeat(3, 100px); /* Adjust the number of columns as needed */
+    grid-auto-rows: 100px; /* Set the row height to 100px */
     position: relative;
     grid-row: 5/6;
-  
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
 }
 .square{
     width: 100px;
@@ -45,9 +50,9 @@ body{
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    position: relative;
+  position: relative;
+  z-index: 1;
    
-    /* box-shadow: 0 0 5px 3px rgb(246, 246, 248); */
 }
 .square:first-child,
 .square:nth-child(2),
@@ -91,6 +96,27 @@ body{
   box-shadow: 0 0 3px 3px rgba(231, 139, 139, 0.7);
 }
 
+.CrossHover:hover::before,
+.CrossHover:hover::after
+{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 80%;
+  height: 3.8px;
+  transform-origin: center;
+  background-color: rgb(211, 131, 131);
+}
+
+.CrossHover:hover::before{
+  transform: rotate(45deg);
+}
+
+.CrossHover:hover::after{
+  transform: rotate(-45deg);
+}
+
 .x-shape::before {
   transform: rotate(45deg);
 }
@@ -108,6 +134,26 @@ body{
   box-shadow: 0 0 3px 3px rgb(187, 199, 192);
   justify-content:center ;
   align-items: center;
+}
+
+.CircleHover:hover
+{
+  height: 20px;
+  width: 20px;
+  /* border-radius: 50%; */
+  border: 3px solid rgb(75, 187, 125) ;
+  /* box-sizing: border-box; */
+  /* box-shadow: 0 0 3px 3px rgb(187, 199, 192); */
+  justify-content:center ;
+  align-items: center;
+  display: flex;
+  /* z-index: 1; */
+  margin-left: 15px;
+  padding-left: 60%;
+  background-color: #2f6627;
+  z-index: 0;
+  display:inline
+
 }
 
 .winning-line {
