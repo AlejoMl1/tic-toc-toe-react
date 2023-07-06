@@ -27,31 +27,40 @@ body{
 }
 
 .gameBoard{
-    width: 300px;
-    height: 300px;
-    /* display: flex;
-    flex-wrap: wrap; */
+    width: 300px;  
+    height: 300px; 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* flex-wrap: wrap;  */
     /* overflow: hidden; */
-    display: grid;
-    grid-template-columns: repeat(3, 100px); /* Adjust the number of columns as needed */
-    grid-auto-rows: 100px; /* Set the row height to 100px */
-    position: relative;
     grid-row: 5/6;
-    box-sizing: border-box;
-    justify-content: center;
-    align-items: center;
+      /*
+    display: grid;
+    grid-template-columns: repeat(3, 100px); 
+    grid-auto-rows: 100px; 
+    */
+    /* position: relative; */
+    /* box-sizing: border-box; */
+    /* background-color: #44c767;
+    padding-top: 2px;
+    padding-left: 2px; */
+
 }
 .square{
     width: 100px;
     height: 100px;
-    border: solid 2px rgb(70, 35, 151);
+    border: solid 1px rgb(70, 35, 151);
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-  position: relative;
-  z-index: 1;
+    /* background-color: rgb(243, 248, 243);  */
+    z-index: 1;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    position: relative;
    
 }
 .square:first-child,
@@ -59,6 +68,7 @@ body{
 .square:nth-child(3)
 {
   border-top: none;
+  /* background-color: #18ab29; */
 }
 
  .square:nth-child(3n+1) /*n will be 0,1,2 */
@@ -78,45 +88,27 @@ body{
   border-right: none;
 }
 .x-shape {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   position: relative;
+  box-sizing: border-box;
+
+  /* background-color: #18ab29; */
 }
   
-.x-shape::before,
+.x-shape::before ,
 .x-shape::after {
   content: "";
-  position: absolute;
-  top: 50%;
+  /* position: relative;*/
+  position: absolute; 
+  top: 50%; 
   left: 0px;
-  width: 100%;
-  height: 4px;
+  width: 100px; 
+  height: 2px;
   transform-origin: center;
   background-color: red;
   box-shadow: 0 0 3px 3px rgba(231, 139, 139, 0.7);
 }
-
-.CrossHover:hover::before,
-.CrossHover:hover::after
-{
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  width: 80%;
-  height: 3.8px;
-  transform-origin: center;
-  background-color: rgb(211, 131, 131);
-}
-
-.CrossHover:hover::before{
-  transform: rotate(45deg);
-}
-
-.CrossHover:hover::after{
-  transform: rotate(-45deg);
-}
-
 .x-shape::before {
   transform: rotate(45deg);
 }
@@ -125,35 +117,45 @@ body{
   transform: rotate(-45deg);
 }
 
+.square:hover .CrossHover::before,
+.square:hover .CrossHover::after
+{
+  content: "";
+  /* position: relative;*/
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  width: 100px;
+  height: 2px;
+  transform-origin: center;
+  background-color: rgb(211, 131, 131);
+  box-shadow: 0 0 3px 3px rgba(231, 139, 139, 0.7);
+}
+
+.square:hover .CrossHover::before{
+  transform: rotate(45deg);
+}
+
+.square:hover .CrossHover::after{
+  transform: rotate(-45deg);
+} 
+
 .circle{
-  height: 70px;
-  width: 70px;
+  height: 80%;
+  width: 80%;
   border-radius: 50%;
   border: 3px solid rgb(75, 187, 125) ;
   box-sizing: border-box;
-  box-shadow: 0 0 3px 3px rgb(187, 199, 192);
-  justify-content:center ;
-  align-items: center;
+  box-shadow: 0 0 2px 2px rgb(53, 236, 130);
 }
 
-.CircleHover:hover
-{
-  height: 20px;
-  width: 20px;
-  /* border-radius: 50%; */
-  border: 3px solid rgb(75, 187, 125) ;
-  /* box-sizing: border-box; */
-  /* box-shadow: 0 0 3px 3px rgb(187, 199, 192); */
-  justify-content:center ;
-  align-items: center;
-  display: flex;
-  /* z-index: 1; */
-  margin-left: 15px;
-  padding-left: 60%;
-  background-color: #2f6627;
-  z-index: 0;
-  display:inline
-
+.square:hover .CircleHover{
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 2px solid rgb(157, 223, 186);
+  box-sizing: border-box;
+  box-shadow: 0 0 2px 2px rgb(156, 235, 189);
 }
 
 .winning-line {
@@ -161,6 +163,7 @@ body{
   background-color: rgb(0, 183, 255);
   border-radius: 8px;
   box-shadow: 0 0 2px 2px rgba(128, 165, 233, 0.7);
+  z-index: 2;
 }
 
 .square.circleActive ,
